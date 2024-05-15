@@ -57,8 +57,7 @@ begin
 	return output;
 end
 $$
-	language plpgsql
-    volatile;
+language plpgsql volatile;
 
 
 create or replace function check_ulid(
@@ -68,14 +67,13 @@ returns boolean
 as $$
 begin
 	if id ~ '^[0-9A-Z]{26}$' then
-  	return true;
+  		return true;
 	else
-  	return false;
+  		return false;
 	end if;
 end
 $$
-	language plpgsql
-    volatile;
+language plpgsql volatile;
 
 
 create or replace function gen_typeid(
@@ -85,29 +83,27 @@ returns text
 as $$
 begin
 	if (prefix is null) or (length(prefix) = 0) or not (prefix ~ '^[a-z]+(_[a-z]+)*$') then
-    raise exception 'typeid prefix must not be null or empty, must start with a lowercase letter, consist of lowercase letters and underscores, and cannot start with an underscore or end with an underscore';
-  end if;
+    	raise exception 'typeid prefix must not be null or empty, must start with a lowercase letter, consist of lowercase letters and underscores, and cannot start with an underscore or end with an underscore';
+  	end if;
  
 	return (prefix || '_' || gen_ulid());
 end
 $$
-	language plpgsql
-	volatile;
+language plpgsql volatile;
     
     
 create or replace function check_typeid(
 	id text,
-  prefix text
+  	prefix text
 )
 returns boolean
 as $$
 begin
 	if id ~ ('^' || prefix || '_[0-9A-Z]{26}$') then
-  	return true;
+  		return true;
 	else
-  	return false;
+  		return false;
 	end if;
 end
 $$
-	language plpgsql
-    volatile;
+language plpgsql volatile;
