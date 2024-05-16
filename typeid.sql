@@ -99,7 +99,7 @@ create or replace function check_typeid(
 returns boolean
 as $$
 begin
-	if id ~ ('^' || prefix || '_[0-9A-Z]{26}$') then
+	if id ~ ('^' || prefix || '_[0-9a-zA-Z]{26}$') then
   		return true;
 	else
   		return false;
