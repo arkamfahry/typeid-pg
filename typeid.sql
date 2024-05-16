@@ -73,7 +73,7 @@ begin
 	end if;
 end
 $$
-language plpgsql volatile;
+language plpgsql immutable;
 
 
 create or replace function gen_typeid(
@@ -106,4 +106,4 @@ begin
 	end if;
 end
 $$
-language plpgsql volatile;
+language plpgsql immutable;
