@@ -66,7 +66,7 @@ create or replace function check_ulid(
 returns boolean
 as $$
 begin
-	if id ~ '^[0-9A-Z]{26}$' then
+	if id ~ '^[0-9a-zA-Z]{26}$' then
   		return true;
 	else
   		return false;
