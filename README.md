@@ -1,4 +1,4 @@
-# Pg-TypeId
+# TypeId-Pg
 
 ## An implementation of TypeId for Postgres
 
