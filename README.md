@@ -1,6 +1,6 @@
 # TypeId Pg
 
-## An Implementation of TypeId for Postgres
+## An Implementation of TypeId for PostgreSQL
 
 TypeId is a type-safe, globally unique identifier format inspired by Stripe's IDs, designed to be sortable, unique and type-safe.
 
