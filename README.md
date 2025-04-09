@@ -21,7 +21,7 @@ This implement of TypeId consists of two parts a `Type` prefix and a `ULID` suff
 
 This implementations TypeId offers a modern and efficient way to handle globally unique identifiers in a type-safe manner, with enhanced sorting capabilities.
 
-## Usage of Pg-TypeId
+## Usage of TypeId Pg
 
 Once you've installed the TypeID types and functions from `typeid.sql` in your Postgres instance, you can use it as follows.
 
