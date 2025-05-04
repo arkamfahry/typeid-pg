@@ -66,7 +66,7 @@ CREATE OR REPLACE FUNCTION check_ulid(
 AS
 $$
 BEGIN
-    IF id ~ '^[0-9a-zA-Z]{26}$' THEN
+    IF id ~ '^[0-9A-Z]{26}$' THEN
         RETURN true;
     ELSE
         RETURN false;
@@ -83,11 +83,15 @@ CREATE OR REPLACE FUNCTION gen_typeid(
 AS
 $$
 BEGIN
-    IF (prefix IS NULL) OR (length(prefix) = 0) OR NOT (prefix ~ '^[a-z]+(_[a-z]+)*$') THEN
-        RAISE EXCEPTION 'typeid prefix must not be null or empty, must start with a lowercase letter, consist of lowercase letters and underscores, and cannot start with an underscore or end with an underscore';
+    IF (prefix IS NULL) OR (length(prefix) = 0) THEN
+        RAISE EXCEPTION 'typeid prefix must not be null or empty';
+    ELSIF (substring(prefix from 1 for 1) = '_') OR (substring(prefix from length(prefix) for 1) = '_') THEN
+        RAISE EXCEPTION 'typeid prefix must not start or end with an underscore';
+    ELSIF prefix ~ '[^a-z_]' THEN
+        RAISE EXCEPTION 'typeid prefix must only contain lowercase letters and underscores';
     END IF;
 
-    RETURN (prefix || '_' || gen_ulid());
+    RETURN prefix || '_' || gen_ulid();
 END
 $$
     LANGUAGE plpgsql
@@ -101,7 +105,7 @@ CREATE OR REPLACE FUNCTION check_typeid(
 AS
 $$
 BEGIN
-    IF id ~ ('^' || prefix || '_[0-9a-zA-Z]{26}$') THEN
+    IF id ~ ('^' || prefix || '_[0-9A-Z]{26}$') THEN
         RETURN true;
     ELSE
         RETURN false;
