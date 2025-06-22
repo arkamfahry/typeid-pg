@@ -95,7 +95,7 @@ BEGIN
 END
 $$
     LANGUAGE plpgsql
-    IMMUTABLE;
+    VOLATILE;
 
 CREATE OR REPLACE FUNCTION check_typeid(
     id text,
@@ -114,3 +114,4 @@ END
 $$
     LANGUAGE plpgsql
     IMMUTABLE;
+
