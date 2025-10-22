@@ -9,7 +9,7 @@ This implementation of TypeId does some modification to the base TypeId specific
 This implement of TypeId consists of two parts a `Type` prefix and a `ULID` suffix, separated by an underscore.
 
 - ```pseudo
-  user_01HXYG96MV7WS0E2KW4ZCGP3KZ
+  user_01hxyg96mv7ws0e2kw4zcgp3kz
   └──┘ └────────────────────────┘
   Type          ULID
   ```
@@ -30,18 +30,18 @@ Once you've installed the TypeID types and functions from `typeid.sql` in your P
 ```sql
 -- Generate a TypeId
 SELECT gen_typeid('user') 
--- Result: user_01HXZF9VT3ANNTRE39FBXDGHBM 
+-- Result: user_01hxyg96mv7ws0e2kw4zcgp3kz 
 ```
 
 - Validating TypeId
 
 ```sql
 -- If TypeId is valid
-SELECT check_typeid('user_01HXZF9VT3ANNTRE39FBXDGHBM', 'user') 
+SELECT check_typeid('user_01hxyg96mv7ws0e2kw4zcgp3kz', 'user') 
 -- Result: true
 
 -- If TypeId is invalid
-SELECT check_typeid('01HXZF9VT3ANNTRE39FBXDGHBM', 'user')
+SELECT check_typeid('01hxyg96mv7ws0e2kw4zcgp3kz', 'user')
 -- Result: false
 ```
 
